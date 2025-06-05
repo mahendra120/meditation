@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">meditation</string>
     <string name="title_activity_starting_page">StartingPage</string>
+    <string name="title_activity_homepage">Homepage</string>
 </resources>
