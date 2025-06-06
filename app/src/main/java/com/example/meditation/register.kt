@@ -25,8 +25,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.meditation.Login
+import org.w3c.dom.Text
 
-class Login : ComponentActivity() {
+
+class register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,7 +37,6 @@ class Login : ComponentActivity() {
             Mytital()
         }
     }
-
     @Composable
     @Preview(showSystemUi = true)
     fun Mytital() {
@@ -54,7 +56,7 @@ class Login : ComponentActivity() {
             }
             Button(
                 onClick = {
-                    val intent = Intent(this@Login, register::class.java)
+                    val intent = Intent(this@register, Login::class.java)
                     startActivity(intent)
                     finish()
                 },
@@ -65,7 +67,7 @@ class Login : ComponentActivity() {
                 border = BorderStroke(1.dp, Color.White)
             )
             {
-                Text(text = "Create Account", modifier = Modifier.padding(bottom = 2.dp))
+                Text(text = "Login", fontSize = 16.sp, modifier = Modifier.padding(bottom = 2.dp, start = 20.dp, end = 20.dp))
             }
             Button(
                 onClick = {},
@@ -109,7 +111,7 @@ class Login : ComponentActivity() {
     fun Text()
     {
         Text(
-            text = "Login",
+            text = "Create Account",
             fontSize = 40.sp,
             modifier = Modifier
             ,color = Color.White.copy(0.8f)

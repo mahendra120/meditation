@@ -2,4 +2,8 @@
     <string name="app_name">meditation</string>
     <string name="title_activity_starting_page">StartingPage</string>
     <string name="title_activity_homepage">Homepage</string>
+    <string name="title_activity_register">register</string>
+    <string name="title_activity_bridge">bridge</string>
+    <string name="title_activity_music">music</string>
+    <string name="title_activity_yoga">Yoga</string>
 </resources>
