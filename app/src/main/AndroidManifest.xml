@@ -23,7 +23,7 @@
             android:label="@string/title_activity_music"
             android:theme="@style/Theme.Meditation" />
         <activity
-            android:name=".Homepage"
+            android:name=".bridge"
             android:exported="false"
             android:label="@string/title_activity_bridge"
             android:theme="@style/Theme.Meditation" />
@@ -43,7 +43,7 @@
             android:label="@string/title_activity_starting_page"
             android:theme="@style/Theme.Meditation" />
         <activity
-            android:name=".bridge"
+            android:name=".Homepage"
             android:exported="true"
             android:theme="@style/Theme.Meditation">
             <intent-filter>
