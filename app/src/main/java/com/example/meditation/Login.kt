@@ -15,18 +15,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,7 +53,7 @@ class Login : ComponentActivity() {
         Box(modifier = Modifier.fillMaxSize())
         {
             Image(
-                painter = painterResource(R.drawable.meditation),
+                painter = painterResource(R.drawable.download),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -67,18 +74,24 @@ class Login : ComponentActivity() {
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 99.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.White.copy(.2f)),
+                    .padding(bottom = 150.dp)
+                    .height(40.dp)
+                    .width(270.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                 border = BorderStroke(1.dp, Color.White)
             )
             {
-                Text(text = "Create Account", modifier = Modifier.padding(bottom = 2.dp))
+                Text(
+                    text = "Create Account",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                )
             }
             Button(
                 onClick = {},
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(bottom = 30.dp, start = 25.dp),
+                    .padding(bottom = 30.dp, start = 35.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent.copy(.3f)),
                 border = BorderStroke(1.dp, Color.White)
             )
@@ -115,48 +128,57 @@ class Login : ComponentActivity() {
 
     @Composable
     fun Text() {
+        var gmail by remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
         Text(
             text = "Welcome Back",
-            fontSize = 40.sp,
+            fontSize = 34.sp,
             modifier = Modifier,
-            color = Color.White.copy(0.8f),
+            color = Color.White,
             fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
             text = "Login to Your Account",
-            modifier = Modifier, color = Color.White
+            modifier = Modifier, color = Color.White, fontSize = 12.sp
         )
-        Spacer(modifier = Modifier.height(70.dp))
+        Spacer(modifier = Modifier.height(55.dp))
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = gmail,
+            onValueChange = {
+                gmail = it
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email
+            ),
             colors = OutlinedTextFieldDefaults.colors(Color.White),
-            label = { Text(text = "Email", color = Color.White.copy(.8f))})
-        Spacer(modifier = Modifier.height(25.dp))
+            label = { Text(text = "Email", fontSize = 14.sp, color = Color.White) })
+        Spacer(modifier = Modifier.height(40.dp))
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = password,
+            onValueChange = { password = it },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+            ),
             colors = OutlinedTextFieldDefaults.colors(Color.White),
-            label = { Text(text = "Password", color = Color.White.copy(.8f)) })
-        Spacer(modifier = Modifier.height(60.dp))
+            label = { Text(text = "Password", fontSize = 14.sp, color = Color.White) })
+        Spacer(modifier = Modifier.height(45.dp))
         Button(
             onClick = {
                 val intent = Intent(this@Login, bridge::class.java)
                 startActivity(intent)
             },
             modifier = Modifier,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White.copy(.35f)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White.copy(.5f)),
             border = BorderStroke(1.dp, Color.White)
         )
         {
             Text(
                 text = "Login",
-                fontSize = 25.sp,
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 30.dp, end = 30.dp)
+                modifier = Modifier.padding(start = 90.dp, end = 90.dp)
             )
         }
-
     }
 }

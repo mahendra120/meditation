@@ -1,23 +1,32 @@
 package com.example.meditation.ui.theme
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.meditation.list
+import com.example.meditation.list1
 
 
 class music : ComponentActivity() {
@@ -57,20 +67,29 @@ class music : ComponentActivity() {
                     text = "Music",
                     modifier = Modifier,
                     fontSize = 25.sp,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold
                 )
             },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black),
             navigationIcon = {
-                IconButton(onClick = {}) {
+                IconButton(
+                    onClick = {
+                        finish()
+                    },
+                    colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
+                ) {
                     Icon(
-                        Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = null,
                     )
                 }
             },
             actions = {
-                IconButton(onClick = {}) {
+                IconButton(
+                    onClick = {},
+                    colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
+                ) {
                     Icon(Icons.Default.FavoriteBorder, contentDescription = null)
                 }
             }
@@ -80,8 +99,23 @@ class music : ComponentActivity() {
     @Composable
     @Preview(showSystemUi = true)
     fun Mycards() {
-        Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
-            MyBars()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+        ) {
+            Column {
+                Text(
+                    text = "  Music instruments > ",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(bottom = 7.dp)
+                )
+                MyBars()
+                Spacer(modifier = Modifier.padding(top = 8.dp))
+                MyBars1()
+            }
         }
     }
 
@@ -90,9 +124,38 @@ class music : ComponentActivity() {
         LazyRow {
             items(list.size) {
                 Card(
-                    modifier = Modifier.height(90.dp).padding(start = 5.dp,end = 5.dp)
-                ){
-                    Image(painter = painterResource(list[it]), contentDescription = null)
+                    modifier = Modifier
+                        .height(90.dp)
+                        .padding(start = 8.dp, end = 8.dp)
+                        .height(80.dp)
+                        .width(150.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                ) {
+                    Image(
+                        painter = painterResource(list[it]),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun MyBars1() {
+        LazyRow {
+            items(list1.size) {
+                Button(
+                    onClick = {},
+                    modifier = Modifier.padding(start = 5.dp, end = 5.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                    border = BorderStroke(
+                        1.dp,
+                        Color.White.copy(.9f)
+                    )
+                )
+                {
+                    Text(text = "${list1[it]}", fontSize = 15.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
