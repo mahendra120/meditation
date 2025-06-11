@@ -74,7 +74,7 @@ class Login : ComponentActivity() {
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 150.dp)
+                    .padding(bottom = 140.dp)
                     .height(40.dp)
                     .width(270.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
@@ -84,7 +84,7 @@ class Login : ComponentActivity() {
                 Text(
                     text = "Create Account",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                 )
             }
             Button(
@@ -153,7 +153,7 @@ class Login : ComponentActivity() {
             ),
             colors = OutlinedTextFieldDefaults.colors(Color.White),
             label = { Text(text = "Email", fontSize = 14.sp, color = Color.White) })
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(26.dp))
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -175,7 +175,7 @@ class Login : ComponentActivity() {
         {
             Text(
                 text = "Login",
-                fontSize = 17.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(start = 90.dp, end = 90.dp)
             )

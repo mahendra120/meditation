@@ -2,4 +2,16 @@
 <resources>
 
     <style name="Theme.Meditation" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Meditation.Fullscreen" parent="Theme.Meditation">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Meditation.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.Meditation.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>

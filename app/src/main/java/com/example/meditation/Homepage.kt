@@ -74,7 +74,7 @@ class Homepage : ComponentActivity() {
                 {
                     Text(
                         text = "Login",
-                        fontSize = 20.sp, fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp, fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 80.dp, end = 80.dp)
                     )
                 }
@@ -94,8 +94,8 @@ class Homepage : ComponentActivity() {
                 {
                     Text(
                         text = "Create Account",
-                        fontSize = 20.sp, fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(start = 39.dp, end = 39.dp)
+                        fontSize = 18.sp, fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 32.dp, end = 32.dp)
                     )
                 }
             }

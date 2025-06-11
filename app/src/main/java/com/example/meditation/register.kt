@@ -65,6 +65,7 @@ class register : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text()
+                Spacer(modifier = Modifier.padding(bottom = 30.dp))
             }
             Button(
                 onClick = {
@@ -74,7 +75,7 @@ class register : ComponentActivity() {
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 110.dp),
+                    .padding(bottom = 100.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                 border = BorderStroke(1.dp, Color.White)
             )
@@ -172,7 +173,7 @@ class register : ComponentActivity() {
             ),
             colors = OutlinedTextFieldDefaults.colors(Color.White),
             label = { Text(text = "Password", fontSize = 14.sp , color = Color.White) })
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(35.dp))
         Button(
             onClick = {
                 val intent = Intent(this@register, bridge::class.java)
@@ -187,7 +188,7 @@ class register : ComponentActivity() {
                 text = "Create Account",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 55.dp, end = 55.dp)
+                modifier = Modifier.padding(start = 50.dp, end = 50.dp)
             )
         }
     }

@@ -11,12 +11,16 @@ var list = arrayListOf(
         R.drawable.manjira,
         R.drawable.ramhat,
 )
-var list1 = arrayListOf(
-        "Home",
-        "Tabala",
-        "Dholak",
-        "Sarod",
-        "Esraj",
-        "Flute",
-        "Siter"
+val list1 = arrayListOf(
+        "dolka",
+        "bashuri",
+        "tamburo",
+        "peti",
+        "vina",
+        "tabala",
+        "dolka",
+        "shranay",
+        "dolka",
+        "manjira",
+        "Ramhat",
 )
