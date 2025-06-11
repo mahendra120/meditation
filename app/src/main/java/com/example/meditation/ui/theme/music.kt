@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -37,7 +39,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import com.example.meditation.R
 import com.example.meditation.list
 import com.example.meditation.list1
+import com.example.meditation.list2
 
 class music : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -187,11 +192,22 @@ class music : ComponentActivity() {
                     border = BorderStroke(.01.dp, Color.White),
                     onClick = {
                         val intent = Intent(this@music, MusicPlay::class.java)
+                        intent.putExtra("image",list2[it])
                         startActivity(intent)
                     }
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
-
+                        Image(
+                            painter = painterResource(list2[it]),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .align(Alignment.CenterStart)
+                                .size(70.dp)
+                                .padding(10.dp)
+                                .clip(CircleShape)
+                                .border(1.dp, Color.White, CircleShape)
+                            , contentScale = ContentScale.Crop
+                        )
                         Text(
                             text = list1[it],
                             fontSize = 25.sp,
@@ -202,9 +218,11 @@ class music : ComponentActivity() {
                             Icons.Default.PlayArrow,
                             contentDescription = null,
                             tint = Color.White,
-                            modifier = Modifier.align(
-                                Alignment.CenterEnd
-                            ).padding(top = 1.dp,end = 4.dp)
+                            modifier = Modifier
+                                .align(
+                                    Alignment.CenterEnd
+                                )
+                                .padding(top = 1.dp, end = 4.dp)
                         )
                     }
                 }

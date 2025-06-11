@@ -12,15 +12,23 @@ var list = arrayListOf(
         R.drawable.ramhat,
 )
 val list1 = arrayListOf(
-        "dolka",
-        "bashuri",
-        "tamburo",
-        "peti",
-        "vina",
-        "tabala",
-        "dolka",
-        "shranay",
-        "dolka",
-        "manjira",
-        "Ramhat",
+        "Vina",
+        "Dolka",
+        "Flute",
+        "Tambura",
+        "Harmonium",
+        "Sarangi",
+        "Tabla"
+)
+val list2 = arrayListOf(
+        R.drawable.classic_music_1,
+        R.drawable.classic_music_2,
+        R.drawable.classic_music_3,
+        R.drawable.classic_music_4,
+        R.drawable.classic_music_5,
+        R.drawable.classic_music_6,
+        R.drawable.tabla,
+)
+var musiclist = arrayListOf(
+        R.raw.ranchhod_rangila
 )
