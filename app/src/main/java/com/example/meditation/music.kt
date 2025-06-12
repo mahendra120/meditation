@@ -1,4 +1,4 @@
-package com.example.meditation.ui.theme
+package com.example.meditation
 
 import android.content.Intent
 import android.os.Bundle
@@ -47,10 +47,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.meditation.R
-import com.example.meditation.list
-import com.example.meditation.list1
-import com.example.meditation.list2
 
 class music : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

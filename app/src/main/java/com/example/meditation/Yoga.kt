@@ -1,4 +1,4 @@
-package com.example.meditation.ui.theme
+package com.example.meditation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
