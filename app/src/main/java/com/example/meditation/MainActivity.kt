@@ -1,12 +1,15 @@
 package com.example.meditation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -21,8 +24,13 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.meditation.music
 
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +40,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Scaffold(modifier = Modifier.fillMaxSize(), topBar = { Mybar() }) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-
+                        MyHome()
                 }
             }
         }
@@ -45,8 +53,8 @@ class MainActivity : ComponentActivity() {
             title = {
                 Text(
                     text = "Meditation",
-                    modifier = Modifier,
-                    fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 3.dp),
+                    fontSize = 25.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Bold
                 )
@@ -55,24 +63,30 @@ class MainActivity : ComponentActivity() {
             navigationIcon = {
                 IconButton(
                     onClick = {
-                        finish()
+                        var intent = Intent(this@MainActivity, bridge::class.java)
+                        startActivity(intent)
                     },
                     colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
                 ) {
                     Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = null, modifier = Modifier.size(27.dp)
                     )
                 }
             },
-            actions = {
-                IconButton(
-                    onClick = {},
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
-                ) {
-                    Icon(Icons.Default.FavoriteBorder, contentDescription = null)
-                }
-            }
         )
+    }
+    @Composable
+    fun MyHome()
+    {
+         Box(modifier = Modifier.fillMaxSize())
+         {
+             Image(
+                 painter = painterResource(R.drawable.download),
+                 contentDescription = null,
+                  contentScale = ContentScale.Crop,
+                 modifier = Modifier.fillMaxSize()
+             )
+         }
     }
 }

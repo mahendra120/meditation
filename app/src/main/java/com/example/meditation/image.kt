@@ -1,28 +1,25 @@
 package com.example.meditation
 
-import android.content.Context
-import android.media.MediaPlayer
-
-var list = arrayListOf(
-    R.drawable.dolka,
-    R.drawable.img_4,
-    R.drawable.img,
-    R.drawable.img_3,
-    R.drawable.img_5,
-    R.drawable.img_6,
-    R.drawable.sharnay,
-    R.drawable.manjira,
-    R.drawable.ramhat,
-)
 val list1 = arrayListOf(
-    "Vina",
-    "Dolka",
-    "Flute",
-    "Tambura",
-    "Harmonium",
+    "Jaag ne Jagva",
+    "Ranchhod Rangila",
+    "Basuri",
+    "Shiv Kaylash",
+    "Namami shnesha",
     "Sarangi",
     "Tabla"
 )
+
+val list = arrayListOf(
+    "Tabla",
+    "Veena",
+    "Basuri",
+    "Sarangl",
+    "Tamburo",
+    "Sharnay",
+    "Manjira"
+)
+
 val list2 = arrayListOf(
     R.drawable.classic_music_1,
     R.drawable.classic_music_2,
@@ -32,14 +29,13 @@ val list2 = arrayListOf(
     R.drawable.classic_music_6,
     R.drawable.tabla,
 )
+
 var musiclist = arrayListOf(
+    R.raw.jaag_gadva,
     R.raw.ranchhod_rangila,
-    R.raw.music1,
+    R.raw.flute,
     R.raw.shiv_kaylash,
     R.raw.namami_shamishan,
+    R.raw.sarangi,
+    R.raw.shiv_tandav
 )
-
-fun startMusic(context: Context, pose: Boolean) {
-    val player = MediaPlayer.create(context, R.raw.music1)
-    player.start()
-}

@@ -22,7 +22,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -81,7 +80,8 @@ class music : ComponentActivity() {
             navigationIcon = {
                 IconButton(
                     onClick = {
-                        finish()
+                        var intent = Intent(this@music, bridge::class.java)
+                        startActivity(intent)
                     },
                     colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
                 ) {
@@ -91,14 +91,6 @@ class music : ComponentActivity() {
                     )
                 }
             },
-            actions = {
-                IconButton(
-                    onClick = {},
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
-                ) {
-                    Icon(Icons.Default.FavoriteBorder, contentDescription = null)
-                }
-            }
         )
     }
 
@@ -118,9 +110,9 @@ class music : ComponentActivity() {
             Column {
                 Text(
                     text = "  Music instruments > ",
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White,
+                    color = Color.White.copy(.5f),
                     modifier = Modifier.padding(top = 7.dp)
                 )
                 Spacer(modifier = Modifier.padding(top = 12.dp))
@@ -136,20 +128,17 @@ class music : ComponentActivity() {
     fun MyBars() {
         LazyRow {
             items(list.size) {
-                Card(
+                Button(
                     onClick = {},
-                    modifier = Modifier
-                        .height(80.dp)
-                        .padding(start = 8.dp, end = 8.dp)
-                        .width(150.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(.19f)),
-                    border = BorderStroke(2.dp, color = Color.White)
-                ) {
-                    Image(
-                        painter = painterResource(list[it]),
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.padding(start = 5.dp, end = 5.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                    border = BorderStroke(
+                        1.dp,
+                        Color.White
                     )
+                )
+                {
+                    Text(list[it], fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -188,7 +177,7 @@ class music : ComponentActivity() {
                     border = BorderStroke(.01.dp, Color.White),
                     onClick = {
                         val intent = Intent(this@music, MusicPlay::class.java)
-                        intent.putExtra("image",list2[it])
+                        intent.putExtra("pos", it)
                         startActivity(intent)
                     }
                 ) {
@@ -201,8 +190,8 @@ class music : ComponentActivity() {
                                 .size(70.dp)
                                 .padding(10.dp)
                                 .clip(CircleShape)
-                                .border(1.dp, Color.White, CircleShape)
-                            , contentScale = ContentScale.Crop
+                                .border(1.dp, Color.White, CircleShape),
+                            contentScale = ContentScale.Crop
                         )
                         Text(
                             text = list1[it],

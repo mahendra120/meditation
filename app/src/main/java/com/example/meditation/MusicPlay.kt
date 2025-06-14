@@ -1,10 +1,9 @@
 package com.example.meditation
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.view.Surface
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -35,10 +34,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
-import androidx.compose.material3.SliderState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,12 +45,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -63,7 +56,6 @@ import com.example.meditation.ui.theme.SkipStartCircle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,11 +64,16 @@ class MusicPlay : ComponentActivity() {
     var mediaPlayer: MediaPlayer? = null
     var sliderValue by mutableStateOf(0f)
 
+    var pos by mutableStateOf(0)
+//    var pos1 by mutableStateOf(0)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        mediaPlayer = MediaPlayer.create(this@MusicPlay, R.raw.namami_shamishan)
+        pos = intent.getIntExtra("pos", 0)
+
+        mediaPlayer = MediaPlayer.create(this@MusicPlay, musiclist[pos])
         mediaPlayer?.start()
 
         GlobalScope.launch {
@@ -85,11 +82,8 @@ class MusicPlay : ComponentActivity() {
                 sliderValue = mediaPlayer?.currentPosition?.toFloat() ?: 0f
             }
         }
-
-        var imges = intent.getIntExtra("image", 0)
         setContent {
-            Myhome(imges)
-
+            Myhome(list2[pos])
             DisposableEffect(Unit) {
                 onDispose {
                     mediaPlayer?.release()
@@ -118,9 +112,16 @@ class MusicPlay : ComponentActivity() {
                         edgeTreatment = BlurredEdgeTreatment.Unbounded
                     )
             )
-            Box(modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = .3f)),)
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = .3f))
+            )
             IconButton(
-                onClick = { finish() }, modifier = Modifier.padding(top = 90.dp),
+                onClick = {
+                    var intent = Intent(this@MusicPlay, music::class.java)
+                    startActivity(intent)
+                }, modifier = Modifier.padding(top = 90.dp),
                 colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White.copy(.9f))
             )
             {
@@ -140,10 +141,10 @@ class MusicPlay : ComponentActivity() {
                 Spacer(modifier = Modifier.padding(top = 130.dp))
                 Card(
                     modifier = Modifier.padding(9.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Black.copy(.3f)),
+                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(.3f)),
                     border = BorderStroke(
                         3.dp,
-                        Color.Black
+                        Color.White
                     )
                 ) {
                     Spacer(Modifier.padding(top = 20.dp))
@@ -186,12 +187,18 @@ class MusicPlay : ComponentActivity() {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
         ) {
-            IconButton(onClick = {}, modifier = Modifier.size(60.dp))
+            IconButton(onClick = {
+                if (pos == 0) {
+                   pos = musiclist.lastIndex
+                } else {
+                    pos--
+                }
+            }, modifier = Modifier.size(60.dp))
             {
                 Icon(
                     SkipStartCircle,
                     contentDescription = null,
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(40.dp), tint = Color.White,
                 )
             }
             IconButton(onClick = {
@@ -206,15 +213,21 @@ class MusicPlay : ComponentActivity() {
                 Icon(
                     if (isPlaying) Pause else Icons.Default.PlayArrow,
                     contentDescription = null,
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(40.dp), tint = Color.White,
                 )
             }
-            IconButton(onClick = {}, modifier = Modifier.size(60.dp))
+            IconButton(onClick = {
+                if (pos == musiclist.lastIndex) {
+                   pos = 0
+                } else {
+                    pos++
+                }
+            }, modifier = Modifier.size(60.dp))
             {
                 Icon(
                     SkipEndCircle,
                     contentDescription = null,
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(40.dp), tint = Color.White,
                 )
             }
         }
@@ -225,7 +238,7 @@ class MusicPlay : ComponentActivity() {
     fun Myslider() {
 
         val colors = SliderDefaults.colors(
-            activeTrackColor = Color.White.copy(.8f),
+            activeTrackColor = Color.White,
             inactiveTrackColor = Color.White.copy(.3f),
             thumbColor = Color.White
         )
